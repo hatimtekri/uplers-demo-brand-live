@@ -1,7 +1,7 @@
 .bookContainer {
   background-color: lightgray;
   margin: 10px;
-  width: 1000px;
+  height: 250px;
 
   flex: 0 0 250px;
   display: flex;
@@ -10,7 +10,9 @@
   .informationWrapper {
     padding: 24px;
     width: 600px;
-
+    display: flex;
+    flex-direction: column;
+    position: relative;
     .title {
       font-size: 20px;
       font-weight: 500;
@@ -18,14 +20,21 @@
 
     .authName {
       font-size: 12px;
+      text-decoration: underline;
     }
     .description {
       font-size: 12px;
     }
     .likebtn {
       position: absolute;
-      bottom: 20px;
-      right: 20px;
+      bottom: 24px;
+      right: 24px;
+    }
+    .pubDate {
+      width: fit-content;
+      font-size: 12px;
+      position: absolute;
+      bottom: 16px;
     }
   }
   .imageWrapper {

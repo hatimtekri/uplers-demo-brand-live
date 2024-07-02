@@ -1,11 +1,13 @@
-
 import { QueryClient } from "@tanstack/react-query";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
+import { ReactNode } from "react";
 
 const MINUTE = 1000 * 60;
-
-function ReactQueryProvider({ children }: any) {
+interface IReactQueryProvider {
+  children: ReactNode;
+}
+function ReactQueryProvider({ children }: IReactQueryProvider) {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
