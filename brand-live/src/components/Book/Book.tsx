@@ -1,11 +1,11 @@
 import moment from "moment";
 import * as React from "react";
 import { IBookComponent } from "../../types/book";
+import DeleteButton from "../DeleteButton/DeleteButton";
 import LikeButton from "../LikeButton/LikeButton";
 import styles from "./Book.module.scss";
 
 const Book = ({ bookData }: IBookComponent) => {
-  
   return (
     <div className={styles.bookContainer}>
       <div className={styles.imageWrapper}>
@@ -24,6 +24,10 @@ const Book = ({ bookData }: IBookComponent) => {
             id={bookData.id}
             isFav={bookData.isFav ?? false}
           />
+        </div>
+
+        <div className={styles.deleteBtn}>
+          <DeleteButton key={bookData.id} id={bookData.id} />
         </div>
       </div>
     </div>

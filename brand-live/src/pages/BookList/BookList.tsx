@@ -5,7 +5,7 @@ import { IBook } from "../../types/book";
 import styles from "./BookList.module.scss";
 const BookList = () => {
   const { data, isLoading } = useBooks();
-console.log("book list")
+
   return (
     <div className={styles.bookListContainer}>
       {isLoading && <div>Loading...</div>}
