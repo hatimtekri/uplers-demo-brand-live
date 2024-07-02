@@ -1,0 +1,43 @@
+.bookContainer {
+  background-color: lightgray;
+  margin: 10px;
+  width: 1000px;
+
+  flex: 0 0 250px;
+  display: flex;
+  border-radius: 24px;
+  position: relative;
+  .informationWrapper {
+    padding: 24px;
+    width: 600px;
+
+    .title {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .authName {
+      font-size: 12px;
+    }
+    .description {
+      font-size: 12px;
+    }
+    .likebtn {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+    }
+  }
+  .imageWrapper {
+    display: flex;
+    width: 400px;
+    flex: 0 0 250px;
+    justify-content: center;
+    img {
+      object-fit: contain;
+
+      width: 200px;
+      text-align: center;
+    }
+  }
+}
