@@ -36,7 +36,7 @@ const Book = ({ bookData }: IBookComponent) => {
               <DeleteButton key={bookData.id} id={bookData.id} />
             </div>
             <div className={styles.editBtn}>
-              <EditButton data={bookData} key={bookData.id}  />
+              <EditButton data={bookData} key={bookData.id} />
             </div>
           </>
         )}

@@ -1,12 +1,12 @@
 import "./styles/globals.scss";
 import "./app.scss";
 
-import BookList from "./pages/BookList/BookList";
 import ReactQueryProvider from "./Context/ReactQueryProvider";
 import Header from "./components/Header/Header";
 import { Provider } from "react-redux";
 import { store } from "./Redux/store";
 import { ConfigProvider } from "antd";
+import BookListPage from "./pages/BookList/BookList";
 
 function App() {
   return (
@@ -22,7 +22,8 @@ function App() {
       <Provider store={store}>
         <ReactQueryProvider>
           <Header></Header>
-          <BookList />
+
+          <BookListPage />
         </ReactQueryProvider>
       </Provider>
     </ConfigProvider>
