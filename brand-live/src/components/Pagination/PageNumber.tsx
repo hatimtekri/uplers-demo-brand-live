@@ -1,3 +1,4 @@
+import React from "react";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updatePageNumber } from "../../Redux/slice/Pagination.slice";
@@ -25,4 +26,4 @@ function PageNumber({ pageNumber }: IPageNumber) {
   );
 }
 
-export default PageNumber;
+export default React.memo(PageNumber);

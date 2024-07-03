@@ -5,18 +5,20 @@ import DeleteButton from "../DeleteButton/DeleteButton";
 import LikeButton from "../LikeButton/LikeButton";
 import styles from "./Book.module.scss";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import EditButton from "../EditButton/EditButton";
 
 const Book = ({ bookData }: IBookComponent) => {
-  console.log("book - ",bookData.id)
+  console.log("bookC - ", bookData.id);
   return (
     <div className={styles.bookContainer}>
       <div className={styles.imageWrapper}>
         <LazyLoadImage alt="Book Image" src={bookData.cover} />
-        {/* <img alt="Book Image" src={bookData.cover}></img> */}
       </div>
       <div className={styles.informationWrapper}>
         <div className={styles.title}>{bookData.title}</div>
-        <div className={styles.authName}>{bookData.author}</div>
+        <div className={styles.authName}>
+          by <span>{bookData.author}</span>
+        </div>
         <div className={styles.description}>{bookData.description}</div>
         <div className={styles.pubDate}>
           {moment(bookData.publicationDate).format("MM/DD/YYYY")}
@@ -32,6 +34,9 @@ const Book = ({ bookData }: IBookComponent) => {
           <>
             <div className={styles.deleteBtn}>
               <DeleteButton key={bookData.id} id={bookData.id} />
+            </div>
+            <div className={styles.editBtn}>
+              <EditButton data={bookData} key={bookData.id}  />
             </div>
           </>
         )}

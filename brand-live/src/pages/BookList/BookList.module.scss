@@ -5,8 +5,6 @@
 }
 .bookListContainer {
   justify-content: center;
-
-  align-items: center;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(600px, 3fr));
   gap: 16px;

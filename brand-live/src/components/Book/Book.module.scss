@@ -7,12 +7,14 @@
   display: flex;
   border-radius: 24px;
   position: relative;
+  border: 0.5px solid lightcyan;
   .informationWrapper {
     padding: 24px;
     width: 600px;
     display: flex;
     flex-direction: column;
     position: relative;
+
     .title {
       font-size: 20px;
       font-weight: 500;
@@ -20,9 +22,14 @@
 
     .authName {
       font-size: 12px;
-      text-decoration: underline;
+      span {
+        font-size: 12px;
+        text-decoration: underline;
+        color: blue;
+      }
     }
     .description {
+      margin-top: 12px;
       font-size: 12px;
     }
     .likebtn {
@@ -34,6 +41,12 @@
       position: absolute;
       top: 16px;
       right: 16px;
+      cursor: pointer;
+    }
+    .editBtn{
+      position: absolute;
+      top: 16px;
+      right: 40px;
       cursor: pointer;
     }
     .pubDate {
@@ -48,9 +61,11 @@
     width: 400px;
     flex: 0 0 250px;
     justify-content: center;
+
     img {
       object-fit: contain;
-
+      height: 200px;
+      margin: auto;
       width: 200px;
       text-align: center;
     }

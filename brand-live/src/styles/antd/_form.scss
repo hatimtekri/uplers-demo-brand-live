@@ -1,0 +1,25 @@
+.ant-form-vertical
+  .ant-form-item:not(.ant-form-item-horizontal)
+  .ant-form-item-label {
+  padding-bottom: 6px;
+  line-height: 1;
+}
+.ant-form-item .ant-form-item-label > label {
+  font-weight: 500;
+  line-height: 14px;
+}
+
+.ant-input-affix-wrapper {
+  &.affixInput {
+    border-radius: 8px;
+  }
+}
+
+// .ant-form-item {
+//   .ant-form-item-required {
+//     &::before {
+//       position: absolute;
+//       right: 0;
+//     }
+//   }
+// }

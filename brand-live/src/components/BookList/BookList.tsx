@@ -1,7 +1,7 @@
 import useBooks from "../../hooks/useBooks";
 import { IBook } from "../../types/book";
 import Book from "../Book/Book";
-import SkeletonLoader from "../SkeletonLoader/SkeletonLoader";
+import SkeletonLoader, { BookListLoader } from "../SkeletonLoader/SkeletonLoader";
 import styles from "./BookList.module.scss";
 
 function BookList() {
@@ -11,11 +11,7 @@ function BookList() {
     <div className={styles.bookListContainer}>
       {isLoading && (
         <>
-          <SkeletonLoader key={1} />
-          <SkeletonLoader key={2} />
-          <SkeletonLoader key={3} />
-          <SkeletonLoader key={4} />
-          <SkeletonLoader key={5} />
+          <BookListLoader />
         </>
       )}
       {!isLoading && (

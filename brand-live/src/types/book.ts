@@ -21,5 +21,33 @@ export interface IDeleteButton {
   id: number;
 }
 export interface IPageNumber {
-  pageNumber:number
+  pageNumber: number;
+}
+
+export interface IBookForm {
+  bookTitle: string;
+  authorName: string;
+  description: string;
+  publicationDate: {
+    $d: Date;
+  };
+}
+
+export interface IAddBookModal {
+  isModalOpen: boolean;
+  setIsModalOpen: (flag: boolean) => void;
+}
+
+export interface IEditBookModal {
+  isModalOpen: boolean;
+  setIsModalOpen: (flag: boolean) => void;
+  data: IBook;
+}
+
+export interface IEditButton {
+  data: IBook;
+}
+
+export interface IImageUpload {
+  setImageSrc: (url: string) => void;
 }
