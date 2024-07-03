@@ -4,12 +4,15 @@ import { IBookComponent } from "../../types/book";
 import DeleteButton from "../DeleteButton/DeleteButton";
 import LikeButton from "../LikeButton/LikeButton";
 import styles from "./Book.module.scss";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Book = ({ bookData }: IBookComponent) => {
+  console.log("book - ",bookData.id)
   return (
     <div className={styles.bookContainer}>
       <div className={styles.imageWrapper}>
-        <img alt="Book Image" src={bookData.cover}></img>
+        <LazyLoadImage alt="Book Image" src={bookData.cover} />
+        {/* <img alt="Book Image" src={bookData.cover}></img> */}
       </div>
       <div className={styles.informationWrapper}>
         <div className={styles.title}>{bookData.title}</div>
@@ -25,10 +28,13 @@ const Book = ({ bookData }: IBookComponent) => {
             isFav={bookData.isFav ?? false}
           />
         </div>
-
-        <div className={styles.deleteBtn}>
-          <DeleteButton key={bookData.id} id={bookData.id} />
-        </div>
+        {bookData.isNewBook && (
+          <>
+            <div className={styles.deleteBtn}>
+              <DeleteButton key={bookData.id} id={bookData.id} />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

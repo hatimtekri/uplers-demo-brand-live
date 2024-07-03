@@ -23,7 +23,7 @@ const LikeButton = ({ isFav, id }: ILikeButton) => {
       return newData;
     });
   };
-
+console.log("like button - ",id)
   return isFav ? (
     <FaHeart
       className={styles.iconBtn}

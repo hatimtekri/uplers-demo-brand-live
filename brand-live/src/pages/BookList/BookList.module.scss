@@ -1,12 +1,19 @@
+.wrapper {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
 .bookListContainer {
   justify-content: center;
-  
+
   align-items: center;
   display: grid;
-  grid-template-columns:repeat(auto-fit, minmax(600px, 3fr));
+  grid-template-columns: repeat(auto-fit, minmax(600px, 3fr));
   gap: 16px;
   position: relative;
   top: 56px;
   overflow: auto;
-  height: 90vh;
+  height: 90%;
 }
+
+

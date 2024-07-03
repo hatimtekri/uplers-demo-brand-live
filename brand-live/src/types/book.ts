@@ -6,6 +6,7 @@ export interface IBook {
   cover: string;
   publicationDate: string;
   isFav: boolean;
+  isNewBook: boolean;
 }
 
 export interface IBookComponent {
@@ -15,4 +16,10 @@ export interface IBookComponent {
 export interface ILikeButton {
   isFav: boolean;
   id: number;
+}
+export interface IDeleteButton {
+  id: number;
+}
+export interface IPageNumber {
+  pageNumber:number
 }

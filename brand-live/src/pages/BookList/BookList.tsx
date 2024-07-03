@@ -1,23 +1,16 @@
-import Book from "../../components/Book/Book";
+import BookList from "../../components/BookList/BookList";
+import Pagination from "../../components/Pagination/Pagination";
 
-import useBooks from "../../hooks/useBooks";
-import { IBook } from "../../types/book";
 import styles from "./BookList.module.scss";
-const BookList = () => {
-  const { data, isLoading } = useBooks();
-
+const BookListPage = () => {
   return (
-    <div className={styles.bookListContainer}>
-      {isLoading && <div>Loading...</div>}
-      {!isLoading && (
-        <>
-          {data?.map((book: IBook) => {
-            return <Book key={book.id} bookData={book} />;
-          })}
-        </>
-      )}
-    </div>
+    <>
+      <div className={styles.wrapper}>
+        <BookList />
+        <Pagination />
+      </div>
+    </>
   );
 };
 
-export default BookList;
+export default BookListPage;

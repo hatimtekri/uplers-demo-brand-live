@@ -1,9 +1,9 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { MdDelete } from "react-icons/md";
-import { IBook } from "../../types/book";
+import { IBook, IDeleteButton } from "../../types/book";
 import { APIEndpoints } from "../../utils/APIEndpoints";
 
-function DeleteButton({ id }: any) {
+function DeleteButton({ id }: IDeleteButton) {
   const queryClient = useQueryClient();
   const deleteBook = () => {
     queryClient.setQueryData([APIEndpoints.getBooks], (oldData: IBook[]) => {
