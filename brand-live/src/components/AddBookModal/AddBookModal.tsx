@@ -3,9 +3,9 @@ import { Button, DatePicker, Form, Input, Modal } from "antd";
 import styles from "./AddBookModal.module.scss";
 import moment from "moment";
 import { useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { IAddBookModal, IBook } from "../../types/book";
+import { IAddBookModal, IBook, TAddBookForm } from "../../types/book";
 import { APIEndpoints } from "../../utils/APIEndpoints";
 import { generateUniqueId } from "../../utils/commonFunc";
 import ImageUpload from "../ImageUpload/ImageUpload";
@@ -35,7 +35,7 @@ function AddBookModal({ isModalOpen, setIsModalOpen }: IAddBookModal) {
     });
   };
 
-  const onSubmit = (data: any) => {
+  const onSubmit: SubmitHandler<TAddBookForm> = (data) => {
     const date = moment(data.publicationDate.$d).format("MM/DD/YYYY");
     addBook({
       title: data.bookTitle,
@@ -48,9 +48,6 @@ function AddBookModal({ isModalOpen, setIsModalOpen }: IAddBookModal) {
       id: generateUniqueId(),
     });
     setIsModalOpen(false);
-  };
-  const onError = (error: any) => {
-    console.log("error - ", error);
   };
 
   useEffect(() => {
@@ -67,7 +64,7 @@ function AddBookModal({ isModalOpen, setIsModalOpen }: IAddBookModal) {
       <Form
         layout="vertical"
         noValidate
-        onSubmitCapture={handleSubmit(onSubmit, onError)}
+        onSubmitCapture={handleSubmit(onSubmit)}
       >
         <Controller
           control={control}
@@ -163,12 +160,12 @@ function AddBookModal({ isModalOpen, setIsModalOpen }: IAddBookModal) {
               label="Cover Image"
             >
               <>
-              <ImageUpload setImageSrc={setImageSrc} />
-              {imageSrc && (
-                <div className={styles.imagePrev}>
-                  <LazyLoadImage src={imageSrc}></LazyLoadImage>
-                </div>
-              )}
+                <ImageUpload setImageSrc={setImageSrc} />
+                {imageSrc && (
+                  <div className={styles.imagePrev}>
+                    <LazyLoadImage src={imageSrc}></LazyLoadImage>
+                  </div>
+                )}
               </>
             </Form.Item>
           )}

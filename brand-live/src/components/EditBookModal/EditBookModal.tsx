@@ -1,8 +1,8 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { Button, DatePicker, Form, Input, Modal } from "antd";
 import moment from "moment";
-import { Controller, useForm } from "react-hook-form";
-import { IBook, IEditBookModal } from "../../types/book";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { IBook, IEditBookModal, TEditBookForm } from "../../types/book";
 import { APIEndpoints } from "../../utils/APIEndpoints";
 import { generateUniqueId } from "../../utils/commonFunc";
 
@@ -29,7 +29,7 @@ function EditBookModal({ isModalOpen, setIsModalOpen, data }: IEditBookModal) {
     });
   };
 
-  const onSubmit = (data: any) => {
+  const onSubmit: SubmitHandler<TEditBookForm> = (data) => {
     const date = moment(data.publicationDate.$d).format("MM/DD/YYYY");
     addBook({
       title: data.bookTitle,
@@ -43,9 +43,6 @@ function EditBookModal({ isModalOpen, setIsModalOpen, data }: IEditBookModal) {
     });
     setIsModalOpen(false);
   };
-  const onError = (error: any) => {
-    console.log("error - ", error);
-  };
 
   return (
     <Modal
@@ -57,7 +54,7 @@ function EditBookModal({ isModalOpen, setIsModalOpen, data }: IEditBookModal) {
       <Form
         layout="vertical"
         noValidate
-        onSubmitCapture={handleSubmit(onSubmit, onError)}
+        onSubmitCapture={handleSubmit(onSubmit)}
       >
         <Controller
           control={control}
@@ -135,7 +132,7 @@ function EditBookModal({ isModalOpen, setIsModalOpen, data }: IEditBookModal) {
           )}
         />
 
-        <Button htmlType="submit">Edit</Button>
+        <Button htmlType="submit">Save</Button>
       </Form>
     </Modal>
   );

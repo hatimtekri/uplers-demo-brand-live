@@ -51,3 +51,18 @@ export interface IEditButton {
 export interface IImageUpload {
   setImageSrc: (url: string) => void;
 }
+export type TAddBookForm = {
+  bookTitle:string
+  authorName:string
+  description:string
+  publicationDate:any
+  coverImage:string
+}
+
+export type TEditBookForm = {
+  bookTitle:string
+  authorName:string
+  description:string
+  publicationDate:any
+
+}

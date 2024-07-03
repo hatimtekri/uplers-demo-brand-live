@@ -1,7 +1,7 @@
 import useBooks from "../../hooks/useBooks";
 import { IBook } from "../../types/book";
 import Book from "../Book/Book";
-import SkeletonLoader, { BookListLoader } from "../SkeletonLoader/SkeletonLoader";
+import { BookListLoader } from "../SkeletonLoader/SkeletonLoader";
 import styles from "./BookList.module.scss";
 
 function BookList() {
