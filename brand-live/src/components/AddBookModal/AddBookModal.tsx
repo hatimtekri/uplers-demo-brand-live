@@ -42,7 +42,6 @@ function AddBookModal({ isModalOpen, setIsModalOpen }: IAddBookModal) {
       publicationDate: date,
       description: data.description,
       isNewBook: true,
-      isFav: false,
       cover: data.coverImage,
       author: data.authorName,
       id: generateUniqueId(),

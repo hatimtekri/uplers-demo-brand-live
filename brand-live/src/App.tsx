@@ -1,10 +1,11 @@
 import "./styles/globals.scss";
 import "./app.scss";
+import { PersistGate } from "redux-persist/integration/react";
 
 import ReactQueryProvider from "./Context/ReactQueryProvider";
 import Header from "./components/Header/Header";
 import { Provider } from "react-redux";
-import { store } from "./Redux/store";
+import { persistor, store } from "./Redux/store";
 import { ConfigProvider } from "antd";
 import BookListPage from "./pages/BookList/BookList";
 
@@ -20,11 +21,13 @@ function App() {
       }}
     >
       <Provider store={store}>
-        <ReactQueryProvider>
-          <Header></Header>
+        <PersistGate  persistor={persistor}>
+          <ReactQueryProvider>
+            <Header></Header>
 
-          <BookListPage />
-        </ReactQueryProvider>
+            <BookListPage />
+          </ReactQueryProvider>
+        </PersistGate>
       </Provider>
     </ConfigProvider>
   );

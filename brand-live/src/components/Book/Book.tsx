@@ -27,7 +27,7 @@ const Book = ({ bookData }: IBookComponent) => {
           <LikeButton
             key={bookData.id}
             id={bookData.id}
-            isFav={bookData.isFav ?? false}
+            
           />
         </div>
         {bookData.isNewBook && (

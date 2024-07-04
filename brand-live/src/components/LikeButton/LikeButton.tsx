@@ -1,41 +1,23 @@
-import { useQueryClient } from "@tanstack/react-query";
 import * as React from "react";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
-import { IBook, ILikeButton } from "../../types/book";
-import { APIEndpoints } from "../../utils/APIEndpoints";
+import { useDispatch, useSelector } from "react-redux";
+import { updateLike } from "../../Redux/slice/like.slice";
+import { ILikeButton } from "../../types/book";
+
 import styles from "./LikeButton.module.scss";
 
-const LikeButton = ({ isFav, id }: ILikeButton) => {
-  const queryClient = useQueryClient();
-
-  const updateFav = (flag: boolean) => {
-    queryClient.setQueryData([APIEndpoints.getBooks], (oldData: IBook[]) => {
-      const newData = [...oldData];
-
-      const index = oldData.findIndex((book: IBook) => book.id === id);
-
-      newData[index] = {
-        ...newData[index],
-        isFav: flag,
-      };
-
-      return newData;
-    });
+const LikeButton = ({ id }: ILikeButton) => {
+  const dispatch = useDispatch();
+  const isLike = useSelector((state: any) => state.like.likes[id] ?? false);
+  const updateFav = () => {
+    dispatch(updateLike(id));
   };
-console.log("like button - ",id)
-  return isFav ? (
-    <FaHeart
-      className={styles.iconBtn}
-      onClick={() => updateFav(false)}
-      size={30}
-    />
+
+  return isLike ? (
+    <FaHeart className={styles.iconBtn} onClick={updateFav} size={30} />
   ) : (
-    <CiHeart
-      className={styles.iconBtn}
-      onClick={() => updateFav(true)}
-      size={30}
-    />
+    <CiHeart className={styles.iconBtn} onClick={updateFav} size={30} />
   );
 };
 

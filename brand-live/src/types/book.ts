@@ -5,7 +5,6 @@ export interface IBook {
   description: string;
   cover: string;
   publicationDate: string;
-  isFav: boolean;
   isNewBook: boolean;
 }
 
@@ -14,7 +13,6 @@ export interface IBookComponent {
 }
 
 export interface ILikeButton {
-  isFav: boolean;
   id: number;
 }
 export interface IDeleteButton {
@@ -52,17 +50,16 @@ export interface IImageUpload {
   setImageSrc: (url: string) => void;
 }
 export type TAddBookForm = {
-  bookTitle:string
-  authorName:string
-  description:string
-  publicationDate:any
-  coverImage:string
-}
+  bookTitle: string;
+  authorName: string;
+  description: string;
+  publicationDate: any;
+  coverImage: string;
+};
 
 export type TEditBookForm = {
-  bookTitle:string
-  authorName:string
-  description:string
-  publicationDate:any
-
-}
+  bookTitle: string;
+  authorName: string;
+  description: string;
+  publicationDate: any;
+};

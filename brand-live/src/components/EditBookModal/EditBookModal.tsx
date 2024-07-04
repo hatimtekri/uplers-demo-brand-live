@@ -43,7 +43,6 @@ function EditBookModal({ isModalOpen, setIsModalOpen, data }: IEditBookModal) {
       publicationDate: date,
       description: data.description,
       isNewBook: true,
-      isFav: false,
       cover: "",
       author: data.authorName,
       id: generateUniqueId(),

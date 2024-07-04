@@ -16,7 +16,7 @@ function ImageUpload({ setImageSrc }: IImageUpload) {
       message.error("file type mismatch");
     }
   };
-  const dummyRequest = ({ file, onSuccess }: any) => {
+  const dummyRequest = ({ onSuccess }: any) => {
     setTimeout(() => {
       onSuccess("ok");
     }, 0);
