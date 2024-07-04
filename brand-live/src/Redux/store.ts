@@ -23,4 +23,7 @@ export const store = configureStore({
   reducer: persistedReducer,
 });
 
+export type IRootState = ReturnType<typeof rootReducer>
+
+
 export const persistor = persistStore(store);

@@ -8,7 +8,6 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import EditButton from "../EditButton/EditButton";
 
 const Book = ({ bookData }: IBookComponent) => {
-  
   return (
     <div className={styles.bookContainer}>
       <div className={styles.imageWrapper}>
@@ -24,11 +23,7 @@ const Book = ({ bookData }: IBookComponent) => {
           {moment(bookData.publicationDate).format("MM/DD/YYYY")}
         </div>
         <div className={styles.likebtn}>
-          <LikeButton
-            key={bookData.id}
-            id={bookData.id}
-            
-          />
+          <LikeButton key={bookData.id} id={bookData.id} />
         </div>
         {bookData.isNewBook && (
           <>

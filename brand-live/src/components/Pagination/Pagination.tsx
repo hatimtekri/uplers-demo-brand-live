@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { IRootState } from "../../Redux/store";
 import PageNumber from "./PageNumber";
 import styles from "./Pagination.module.scss";
 function createArray(num: number) {
@@ -7,7 +8,7 @@ function createArray(num: number) {
 }
 function Pagination() {
   const totalRecords = useSelector(
-    (state: any) => state.pagination?.totalRecords
+    (state: IRootState) => state.pagination?.totalRecords
   );
 
   return (

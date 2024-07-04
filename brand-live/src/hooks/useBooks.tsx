@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateTotalRecords } from "../Redux/slice/Pagination.slice";
+import { IRootState } from "../Redux/store";
 import { IBook } from "../types/book";
 import { APIEndpoints } from "../utils/APIEndpoints";
 import { get } from "../utils/axios/axios";
@@ -37,7 +38,7 @@ const useBooks = () => {
 
   // Get current page number from Redux store
   const currentPageNumber = useSelector(
-    (state: any) => state.pagination?.pageNumber
+    (state: IRootState) => state.pagination?.pageNumber
   );
 
   
