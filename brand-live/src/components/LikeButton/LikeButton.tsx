@@ -1,4 +1,3 @@
-import * as React from "react";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +15,7 @@ const LikeButton = ({ id }: ILikeButton) => {
   const updateFav = () => {
     dispatch(updateLike(id));
   };
-
+  
   return isLike ? (
     <FaHeart className={styles.iconBtn} onClick={updateFav} size={30} />
   ) : (
@@ -24,4 +23,4 @@ const LikeButton = ({ id }: ILikeButton) => {
   );
 };
 
-export default React.memo(LikeButton);
+export default  LikeButton;

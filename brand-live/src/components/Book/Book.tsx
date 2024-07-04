@@ -9,6 +9,7 @@ import EditButton from "../EditButton/EditButton";
 import { DateFormat } from "../../Config/Constant/book";
 
 const Book = ({ bookData }: IBookComponent) => {
+  
   return (
     <div className={styles.bookContainer}>
       <div className={styles.imageWrapper}>

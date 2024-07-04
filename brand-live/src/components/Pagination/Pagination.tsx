@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { IRootState } from "../../Redux/store";
 import PageNumber from "./PageNumber";
@@ -20,4 +19,4 @@ function Pagination() {
   );
 }
 
-export default React.memo(Pagination);
+export default Pagination;
