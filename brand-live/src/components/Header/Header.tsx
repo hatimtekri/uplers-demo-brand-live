@@ -5,7 +5,7 @@ import styles from "./Header.module.scss";
 const Header = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
 
-  console.log("header");
+  
   return (
     <div className={styles.hedContainer}>
       Book Store

@@ -13,7 +13,7 @@ function PageNumber({ pageNumber }: IPageNumber) {
   const updatePageNumberFunc = useCallback(() => {
     dispatch(updatePageNumber(pageNumber));
   }, [pageNumber]);
-  console.log("page number - ", pageNumber);
+
   return (
     <div
       onClick={updatePageNumberFunc}

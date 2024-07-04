@@ -39,9 +39,7 @@ const useBooks = () => {
   const currentPageNumber = useSelector(
     (state: any) => state.pagination?.pageNumber
   );
-  useEffect(() => {
-    console.log("paginatedData - ",paginatedData)
-  }, [paginatedData])
+
   
 
   // Fetch books data using react-query
@@ -63,7 +61,7 @@ const useBooks = () => {
   // Update paginated data when current page number or books data changes
   useEffect(() => {
     setPaginatedData([...paginateArray(query.data, 5, currentPageNumber)]);
-  }, [currentPageNumber, length]);
+  }, [currentPageNumber, query.data]);
 
   return {
     ...query,

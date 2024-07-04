@@ -8,7 +8,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import EditButton from "../EditButton/EditButton";
 
 const Book = ({ bookData }: IBookComponent) => {
-  console.log("bookC - ", bookData.id);
+  
   return (
     <div className={styles.bookContainer}>
       <div className={styles.imageWrapper}>

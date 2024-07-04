@@ -9,7 +9,7 @@ function Pagination() {
   const totalRecords = useSelector(
     (state: any) => state.pagination?.totalRecords
   );
-  console.log("pagination - ", totalRecords);
+
   return (
     <div className={styles.pagination}>
       {createArray(Math.ceil(totalRecords / 5)).map((_, index) => {

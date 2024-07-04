@@ -6,7 +6,7 @@ import styles from "./BookList.module.scss";
 
 function BookList() {
   const { paginatedData, isLoading } = useBooks();
-  console.log("book list - ");
+
   return (
     <div className={styles.bookListContainer}>
       {isLoading && (
