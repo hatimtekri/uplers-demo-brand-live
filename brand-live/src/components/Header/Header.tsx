@@ -5,11 +5,13 @@ import styles from "./Header.module.scss";
 const Header = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
 
-  console.log("header")
+  console.log("header");
   return (
     <div className={styles.hedContainer}>
       Book Store
-      <Button className={styles.addBtn} onClick={()=> setIsAddModalOpen(true)} >Add Book</Button>
+      <Button className={styles.addBtn} onClick={() => setIsAddModalOpen(true)}>
+        Add Book
+      </Button>
       {isAddModalOpen && (
         <>
           <AddBookModal

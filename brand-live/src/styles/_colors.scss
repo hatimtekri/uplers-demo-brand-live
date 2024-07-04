@@ -1,0 +1,35 @@
+$default: (
+  base-1: "241,250,238",
+  base-2: "29,53,87",
+  base-3: "168,218,220",
+  base-4: "199,215,226",
+  base-5: "252,254,252",
+  base-6: "217,225,214",
+  base-7: "29,53,87",
+  base-8: "230,57,70",
+  base-9: "17,32,52",
+  base-10: "255, 255, 255",
+);
+$dark: ();
+
+@function quote-color($color) {
+  @if type-of($color) == "string" {
+    @return unquote($color);
+  } @else {
+    @return "" + $color;
+  }
+}
+
+:root {
+  @each $color, $value in $default {
+    --#{quote-color($color)}-rgb: rgb(#{$value});
+    --#{quote-color($color)}: rgb(#{$value});
+  }
+}
+
+:root[data-theme="dark"] {
+  @each $color, $value in $dark {
+    --#{quote-color($color)}-rgb: rgb(#{$value});
+    --#{quote-color($color)}: rgb(#{$value});
+  }
+}

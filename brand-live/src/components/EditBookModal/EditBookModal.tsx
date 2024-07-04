@@ -2,11 +2,17 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Button, DatePicker, Form, Input, Modal } from "antd";
 import moment from "moment";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import dayjs from "dayjs";
 import { IBook, IEditBookModal, TEditBookForm } from "../../types/book";
 import { APIEndpoints } from "../../utils/APIEndpoints";
 import { generateUniqueId } from "../../utils/commonFunc";
-
+import { useState } from "react";
+import ImageUpload from "../ImageUpload/ImageUpload";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+const dateFormat = "MM/DD/YYYY";
+import styles from "./EditBookModal.module.scss";
 function EditBookModal({ isModalOpen, setIsModalOpen, data }: IEditBookModal) {
+  const [imageSrc, setImageSrc] = useState(data.cover);
   const queryClient = useQueryClient();
   const setupDefaults = (data: IBook) => {
     return {
@@ -14,6 +20,7 @@ function EditBookModal({ isModalOpen, setIsModalOpen, data }: IEditBookModal) {
       authorName: data.author,
       description: data.description,
       publicationDate: data.publicationDate,
+      coverImage: data.cover,
     };
   };
   const { formState, handleSubmit, control } = useForm({
@@ -127,7 +134,37 @@ function EditBookModal({ isModalOpen, setIsModalOpen, data }: IEditBookModal) {
               validateStatus={errors.publicationDate ? "error" : undefined}
               label="Publication Date"
             >
-              <DatePicker {...remaining} />
+              <DatePicker
+                defaultValue={dayjs(remaining.value, dateFormat)}
+                format={dateFormat}
+              />
+            </Form.Item>
+          )}
+        />
+
+        <Controller
+          control={control}
+          name="coverImage"
+          rules={{
+            required: "Please upload image",
+          }}
+          render={({ field: { ref, ...remaining } }) => (
+            <Form.Item
+              id="coverImage"
+              hasFeedback
+              {...remaining}
+              help={errors.coverImage && errors.coverImage.message}
+              validateStatus={errors.coverImage ? "error" : undefined}
+              label="Cover Image"
+            >
+              <>
+                <ImageUpload setImageSrc={setImageSrc} />
+                {imageSrc && (
+                  <div className={styles.imagePrev}>
+                    <LazyLoadImage src={imageSrc}></LazyLoadImage>
+                  </div>
+                )}
+              </>
             </Form.Item>
           )}
         />

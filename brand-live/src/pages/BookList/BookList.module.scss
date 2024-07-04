@@ -2,16 +2,8 @@
   height: 90vh;
   display: flex;
   flex-direction: column;
+  background-color: var(--base-5);
 }
-.bookListContainer {
-  justify-content: center;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(600px, 3fr));
-  gap: 16px;
-  position: relative;
-  top: 56px;
-  overflow: auto;
-  height: 90%;
-}
+
 
 

@@ -1,6 +1,6 @@
 .hedContainer {
-  background-color: maroon;
-  color: white;
+  background-color: var(--base-1);
+  color: var(--base-2);
   position: fixed;
   top: 0;
   width: 100%;
@@ -12,9 +12,9 @@
   font-size: 24px;
   font-weight: 500;
   font-style: italic;
+  box-shadow: 0px 6px 16px 0px var(--base-6);
   .addBtn {
-position: absolute;
-right: 16px;
+    position: absolute;
+    right: 16px;
   }
-
 }

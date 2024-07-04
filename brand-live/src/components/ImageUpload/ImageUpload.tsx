@@ -1,4 +1,4 @@
-import { Upload, UploadFile, UploadProps } from "antd";
+import { message, Upload, UploadFile, UploadProps } from "antd";
 import { useState } from "react";
 import { IImageUpload } from "../../types/book";
 import { getBase64, validateFile } from "../../utils/commonFunc";
@@ -7,18 +7,23 @@ function ImageUpload({ setImageSrc }: IImageUpload) {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
 
   const onChange: UploadProps["onChange"] = ({ fileList: newFileList }) => {
-    console.log("onchange - ", newFileList);
-
     const file = newFileList[0]?.originFileObj;
-    setFileList(newFileList);
+
     if (file && validateFile(file, false)) {
+      setFileList(newFileList);
       getBase64(file, (url: string) => setImageSrc(url));
     } else {
-      console.error("");
+      message.error("file type mismatch");
     }
+  };
+  const dummyRequest = ({ file, onSuccess }: any) => {
+    setTimeout(() => {
+      onSuccess("ok");
+    }, 0);
   };
   return (
     <Upload
+      customRequest={dummyRequest}
       listType="picture-card"
       fileList={fileList}
       onChange={onChange}

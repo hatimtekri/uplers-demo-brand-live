@@ -1,11 +1,10 @@
 .bookListContainer {
-    justify-content: center;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(600px, 3fr));
-    gap: 16px;
-    position: relative;
-    top: 56px;
-    overflow: auto;
-    height: 90%;
-   
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(600px, 0fr));
+  gap: 16px;
+  position: relative;
+  top: 70px;
+  overflow: auto;
+  height: 90%;
+  grid-auto-rows: 240px;
+}
