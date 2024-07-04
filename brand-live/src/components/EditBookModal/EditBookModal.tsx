@@ -1,12 +1,16 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { Button, DatePicker, Form, Input, Modal } from "antd";
+import { Button, DatePicker, Form, Input, message, Modal } from "antd";
 import moment from "moment";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import dayjs from "dayjs";
-import { IBook, IEditBookModal, TEditBookForm } from "../../types/book";
+import {
+  IBook,
+  IEditBook,
+  IEditBookModal,
+  TEditBookForm,
+} from "../../types/book";
 import { APIEndpoints } from "../../utils/APIEndpoints";
-import { generateUniqueId } from "../../utils/commonFunc";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ImageUpload from "../ImageUpload/ImageUpload";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 const dateFormat = "MM/DD/YYYY";
@@ -21,34 +25,50 @@ function EditBookModal({ isModalOpen, setIsModalOpen, data }: IEditBookModal) {
       description: data.description,
       publicationDate: data.publicationDate,
       coverImage: data.cover,
+      id: data.id,
     };
   };
-  const { formState, handleSubmit, control } = useForm({
+  const { formState, handleSubmit, setValue, control } = useForm({
     defaultValues: setupDefaults(data),
   });
 
   const { errors } = formState;
-  const addBook = (book: IBook) => {
-    queryClient.setQueryData([APIEndpoints.getBooks], (oldData: IBook[]) => {
-      const newData = [...oldData, book];
 
+  const editBook = (book: IEditBook) => {
+    queryClient.setQueryData([APIEndpoints.getBooks], (oldData: IBook[]) => {
+      const newData = [...oldData];
+      const index = newData.findIndex(
+        (singleBook) => singleBook.id === book.id
+      );
+      newData[index] = {
+        ...newData[index],
+        ...book,
+      };
       return newData;
     });
   };
 
   const onSubmit: SubmitHandler<TEditBookForm> = (data) => {
-    const date = moment(data.publicationDate.$d).format("MM/DD/YYYY");
-    addBook({
+    let date = data.publicationDate;
+    if (typeof data.publicationDate !== "string") {
+      date = moment(data.publicationDate.$d).format("MM/DD/YYYY");
+    }
+
+    editBook({
       title: data.bookTitle,
       publicationDate: date,
       description: data.description,
-      isNewBook: true,
-      cover: "",
+      cover: data.coverImage,
       author: data.authorName,
-      id: generateUniqueId(),
+      id: data.id,
     });
+    message.success("Book Save Successfully")
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    setValue("coverImage", imageSrc);
+  }, [imageSrc]);
 
   return (
     <Modal
@@ -124,11 +144,10 @@ function EditBookModal({ isModalOpen, setIsModalOpen, data }: IEditBookModal) {
           rules={{
             required: "Please select publication date",
           }}
-          render={({ field: { ref, ...remaining } }) => (
+          render={({ field: { ref, onChange, ...remaining } }) => (
             <Form.Item
               id="publicationDate"
               hasFeedback
-              {...remaining}
               help={errors.publicationDate && errors.publicationDate.message}
               validateStatus={errors.publicationDate ? "error" : undefined}
               label="Publication Date"
@@ -136,6 +155,7 @@ function EditBookModal({ isModalOpen, setIsModalOpen, data }: IEditBookModal) {
               <DatePicker
                 defaultValue={dayjs(remaining.value, dateFormat)}
                 format={dateFormat}
+                onChange={onChange}
               />
             </Form.Item>
           )}
@@ -148,23 +168,25 @@ function EditBookModal({ isModalOpen, setIsModalOpen, data }: IEditBookModal) {
             required: "Please upload image",
           }}
           render={({ field: { ref, ...remaining } }) => (
-            <Form.Item
-              id="coverImage"
-              hasFeedback
-              {...remaining}
-              help={errors.coverImage && errors.coverImage.message}
-              validateStatus={errors.coverImage ? "error" : undefined}
-              label="Cover Image"
-            >
-              <>
-                <ImageUpload setImageSrc={setImageSrc} />
-                {imageSrc && (
-                  <div className={styles.imagePrev}>
-                    <LazyLoadImage src={imageSrc}></LazyLoadImage>
-                  </div>
-                )}
-              </>
-            </Form.Item>
+            <>
+              <Form.Item
+                id="coverImage"
+                hasFeedback
+                {...remaining}
+                help={errors.coverImage && errors.coverImage.message}
+                validateStatus={errors.coverImage ? "error" : undefined}
+                label="Cover Image"
+              >
+                <>
+                  <ImageUpload setImageSrc={setImageSrc} />
+                </>
+              </Form.Item>
+              {imageSrc && (
+                <div className={styles.imagePrev}>
+                  <LazyLoadImage src={imageSrc}></LazyLoadImage>
+                </div>
+              )}
+            </>
           )}
         />
 

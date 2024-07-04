@@ -4,13 +4,11 @@ import like from "./slice/like.slice";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-
 const rootPersistConfig = {
   key: "root",
-  version:1,
+  version: 1,
   storage,
 };
-
 
 const rootReducer = combineReducers({
   like,
@@ -21,9 +19,12 @@ const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
-export type IRootState = ReturnType<typeof rootReducer>
-
+export type IRootState = ReturnType<typeof rootReducer>;
 
 export const persistor = persistStore(store);

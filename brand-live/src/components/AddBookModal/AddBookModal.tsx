@@ -1,5 +1,5 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { Button, DatePicker, Form, Input, Modal } from "antd";
+import { Button, DatePicker, Form, Input, message, Modal } from "antd";
 import styles from "./AddBookModal.module.scss";
 import moment from "moment";
 import { useEffect, useState } from "react";
@@ -46,6 +46,7 @@ function AddBookModal({ isModalOpen, setIsModalOpen }: IAddBookModal) {
       author: data.authorName,
       id: generateUniqueId(),
     });
+    message.success("Book Added Successfully")
     setIsModalOpen(false);
   };
 
@@ -150,6 +151,7 @@ function AddBookModal({ isModalOpen, setIsModalOpen }: IAddBookModal) {
             required: "Please upload image",
           }}
           render={({ field: { ref, ...remaining } }) => (
+            <>
             <Form.Item
               id="coverImage"
               hasFeedback
@@ -160,13 +162,16 @@ function AddBookModal({ isModalOpen, setIsModalOpen }: IAddBookModal) {
             >
               <>
                 <ImageUpload setImageSrc={setImageSrc} />
-                {imageSrc && (
+                
+              </>
+            </Form.Item>
+            {imageSrc && (
                   <div className={styles.imagePrev}>
                     <LazyLoadImage src={imageSrc}></LazyLoadImage>
                   </div>
                 )}
-              </>
-            </Form.Item>
+            </>
+            
           )}
         />
 

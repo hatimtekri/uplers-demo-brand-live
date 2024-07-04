@@ -62,4 +62,15 @@ export type TEditBookForm = {
   authorName: string;
   description: string;
   publicationDate: any;
+  id:number;
+  coverImage:string;
 };
+export interface IEditBook {
+  id: number;
+  title: string;
+  author: string;
+  description: string;
+  cover: string;
+  publicationDate: string;
+ 
+}
