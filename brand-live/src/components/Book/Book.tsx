@@ -6,6 +6,7 @@ import LikeButton from "../LikeButton/LikeButton";
 import styles from "./Book.module.scss";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import EditButton from "../EditButton/EditButton";
+import { DateFormat } from "../../Config/Constant/book";
 
 const Book = ({ bookData }: IBookComponent) => {
   return (
@@ -20,7 +21,7 @@ const Book = ({ bookData }: IBookComponent) => {
         </div>
         <div className={styles.description}>{bookData.description}</div>
         <div className={styles.pubDate}>
-          {moment(bookData.publicationDate).format("MM/DD/YYYY")}
+          {moment(bookData.publicationDate).format(DateFormat)}
         </div>
         <div className={styles.likebtn}>
           <LikeButton key={bookData.id} id={bookData.id} />

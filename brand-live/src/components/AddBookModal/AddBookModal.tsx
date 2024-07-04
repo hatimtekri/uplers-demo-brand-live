@@ -9,6 +9,7 @@ import { IAddBookModal, IBook, TAddBookForm } from "../../types/book";
 import { APIEndpoints } from "../../utils/APIEndpoints";
 import { generateUniqueId } from "../../utils/commonFunc";
 import ImageUpload from "../ImageUpload/ImageUpload";
+import { DateFormat } from "../../Config/Constant/book";
 
 const formDefaultValues = {
   bookTitle: "",
@@ -36,7 +37,7 @@ function AddBookModal({ isModalOpen, setIsModalOpen }: IAddBookModal) {
   };
 
   const onSubmit: SubmitHandler<TAddBookForm> = (data) => {
-    const date = moment(data.publicationDate.$d).format("MM/DD/YYYY");
+    const date = moment(data.publicationDate.$d).format(DateFormat);
     addBook({
       title: data.bookTitle,
       publicationDate: date,

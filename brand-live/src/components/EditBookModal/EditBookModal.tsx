@@ -13,8 +13,9 @@ import { APIEndpoints } from "../../utils/APIEndpoints";
 import { useEffect, useState } from "react";
 import ImageUpload from "../ImageUpload/ImageUpload";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-const dateFormat = "MM/DD/YYYY";
+
 import styles from "./EditBookModal.module.scss";
+import { DateFormat } from "../../Config/Constant/book";
 function EditBookModal({ isModalOpen, setIsModalOpen, data }: IEditBookModal) {
   const [imageSrc, setImageSrc] = useState(data.cover);
   const queryClient = useQueryClient();
@@ -51,7 +52,7 @@ function EditBookModal({ isModalOpen, setIsModalOpen, data }: IEditBookModal) {
   const onSubmit: SubmitHandler<TEditBookForm> = (data) => {
     let date = data.publicationDate;
     if (typeof data.publicationDate !== "string") {
-      date = moment(data.publicationDate.$d).format("MM/DD/YYYY");
+      date = moment(data.publicationDate.$d).format(DateFormat);
     }
 
     editBook({
@@ -153,8 +154,8 @@ function EditBookModal({ isModalOpen, setIsModalOpen, data }: IEditBookModal) {
               label="Publication Date"
             >
               <DatePicker
-                defaultValue={dayjs(remaining.value, dateFormat)}
-                format={dateFormat}
+                defaultValue={dayjs(remaining.value, DateFormat)}
+                format={DateFormat}
                 onChange={onChange}
               />
             </Form.Item>
